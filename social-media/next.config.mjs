@@ -4,12 +4,12 @@ const nextConfig = {
     images: {
         remotePatterns: [
           {
-            protocol: 'http',
-            hostname: 'localhost',
+            protocol: 'https',
+            hostname: 'social-media-frontend-woad.vercel',
             pathname: '/media/**/**',
           },
         ],
-        domains: ['localhost:8000'],
+        domains: ['social-media-frontend-woad.vercel.app'],
       },
 };
 
