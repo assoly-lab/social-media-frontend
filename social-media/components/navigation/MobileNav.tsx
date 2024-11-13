@@ -15,7 +15,7 @@ import MobileNotificationsPanel from "./MobileNotificationsPanel";
 import { SocketContext } from "@/contexts/SocketContext";
 import { BiSolidMessageRounded } from "react-icons/bi";
 import { useRouter } from "next/navigation";
-import { UserDiscussion,Notification } from "@/utils/Types";
+import { Notification } from "@/utils/Types";
 
 
 
@@ -23,7 +23,7 @@ import { UserDiscussion,Notification } from "@/utils/Types";
 export default function MobileNav(){
     const [isOpen,setIsOpen] = useState<boolean>(false)
     const { userProfile,setUserProfile,showMobileNotificationsPanel,setShowMobileNotificationsPanel } = useContext(AppContext)
-    const {notifications,setNotifications,notificationsCount,setNotificationsCount,unreadMessagesCounter,setUnreadMessagesCounter,chatWsRef,notificationsWsRef,setDiscussions} = useContext(SocketContext)
+    const {notifications,setNotifications,notificationsCount,setNotificationsCount,unreadMessagesCounter,setUnreadMessagesCounter,chatWsRef,notificationsWsRef} = useContext(SocketContext)
     const [accessToken,setAccessToken] = useState<string>('')
     const router = useRouter()
 
