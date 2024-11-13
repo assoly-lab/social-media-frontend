@@ -74,30 +74,30 @@ export type Media = {
 }
 
 export type PostType = {
-    author?:Author,
-    id?:number,
-    content?:string,
+    author:Author,
+    id:number,
+    content:string,
     media:Media[] | [],
     is_public:boolean,
-    is_liked?:boolean,
-    likes?:number,
+    is_liked:boolean,
+    likes:number,
     comments:CommentType[] | [],
-    comments_count?:number,
-    created_at?:string,
-    updated_at?:string,
+    comments_count:number,
+    created_at:string,
+    updated_at:string,
 }
 
 
 type Author = {
-    email?:string,
-    username?:string,
-    first_name ?:string,
-    last_name?:string,
-    followers_count?:number,
-    following_count?:number,
+    email:string,
+    username:string,
+    first_name :string,
+    last_name:string,
+    followers_count:number,
+    following_count:number,
     id:number,
-    userprofile?:{
-        bio?:string,
+    userprofile:{
+        bio:string | null,
         avatar:string,
     },
 

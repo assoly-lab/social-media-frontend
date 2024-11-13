@@ -15,7 +15,7 @@ import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { SocketContext } from "@/contexts/SocketContext";
 import { BiSolidMessageRounded } from "react-icons/bi";
-import { MessagePayload, Notification, UserDiscussion } from "@/utils/Types";
+import { Notification, UserDiscussion } from "@/utils/Types";
 
 
 
@@ -23,7 +23,7 @@ import { MessagePayload, Notification, UserDiscussion } from "@/utils/Types";
 
 export default function DesktopNav(){
     const { userProfile,setUserProfile,showNotificationsPanel,setShowNotificationsPanel } = useContext(AppContext)
-    const {notifications,setNotifications,notificationsCount,setNotificationsCount,discussions,setDiscussions,unreadMessagesCounter,setUnreadMessagesCounter,messages,chatWsRef,notificationsWsRef,setSelectedUser} = useContext(SocketContext)
+    const {notifications,setNotifications,notificationsCount,setNotificationsCount,discussions,setDiscussions,unreadMessagesCounter,setUnreadMessagesCounter,messages,chatWsRef,notificationsWsRef} = useContext(SocketContext)
     const [accessToken,setAccessToken] = useState<string | null>(null)
     const router = useRouter()
 
@@ -71,34 +71,34 @@ export default function DesktopNav(){
 
 
 
-    const handleSeenMessages = async (user:UserDiscussion)=>{
-        try{
-            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/seen/${user.id}/`)
-            if(!response.ok){
-                const error = await response.json()
-                throw new Error(error)
-            }
-            // const data = await response.json()
+    // const handleSeenMessages = async (user:UserDiscussion)=>{
+    //     try{
+    //         const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/seen/${user.id}/`)
+    //         if(!response.ok){
+    //             const error = await response.json()
+    //             throw new Error(error)
+    //         }
+    //         const data = await response.json()
 
-            setDiscussions((prev:UserDiscussion[])=>{
-                const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
-                    if(discussion.id == user.id){
-                        const updatedDiscussion:UserDiscussion = {
-                            ...discussion,
-                            unread_count:0,
-                        }
-                        return updatedDiscussion
-                    }
-                    return discussion
-                })
-                return updatedDiscussions
-            })
+    //         setDiscussions((prev:UserDiscussion[])=>{
+    //             const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
+    //                 if(discussion.id == user.id){
+    //                     const updatedDiscussion:UserDiscussion = {
+    //                         ...discussion,
+    //                         unread_count:0,
+    //                     }
+    //                     return updatedDiscussion
+    //                 }
+    //                 return discussion
+    //             })
+    //             return updatedDiscussions
+    //         })
 
-        }catch(e){
-            const error = e as Error
-            toast.error(error.message)
-        }
-    }
+    //     }catch(e){
+    //         const error = e as Error
+    //         toast.error(error.message)
+    //     }
+    // }
 
 
 
@@ -339,7 +339,7 @@ export default function DesktopNav(){
                 <span className="relative cursor-pointer flex gap-2 text-white bg-[#7F265B] p-1 rounded-md" onClick={(e)=>{
                     handleSeenNotifications()
                     e.stopPropagation()
-                    setShowNotificationsPanel((prev:Boolean)=>!prev)}}>
+                    setShowNotificationsPanel((prev:boolean)=>!prev)}}>
                     <IoMdNotificationsOutline className="w-7 h-7 " />{notificationsCount > 0 && <span className="absolute -top-3 -right-2 bg-red-500 text-white py-1 px-2 rounded-full text-xs font-normal">{notificationsCount}</span>}
                 <AnimatePresence>
                     {showNotificationsPanel &&

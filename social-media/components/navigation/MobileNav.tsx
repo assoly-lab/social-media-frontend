@@ -15,7 +15,7 @@ import MobileNotificationsPanel from "./MobileNotificationsPanel";
 import { SocketContext } from "@/contexts/SocketContext";
 import { BiSolidMessageRounded } from "react-icons/bi";
 import { useRouter } from "next/navigation";
-import { MessagePayload, UserDiscussion,Notification } from "@/utils/Types";
+import { UserDiscussion,Notification } from "@/utils/Types";
 
 
 
@@ -23,7 +23,7 @@ import { MessagePayload, UserDiscussion,Notification } from "@/utils/Types";
 export default function MobileNav(){
     const [isOpen,setIsOpen] = useState<boolean>(false)
     const { userProfile,setUserProfile,showMobileNotificationsPanel,setShowMobileNotificationsPanel } = useContext(AppContext)
-    const {notifications,setNotifications,notificationsCount,setNotificationsCount,unreadMessagesCounter,setUnreadMessagesCounter,chatWsRef,notificationsWsRef,setDiscussions,setSelectedUser} = useContext(SocketContext)
+    const {notifications,setNotifications,notificationsCount,setNotificationsCount,unreadMessagesCounter,setUnreadMessagesCounter,chatWsRef,notificationsWsRef,setDiscussions} = useContext(SocketContext)
     const [accessToken,setAccessToken] = useState<string>('')
     const router = useRouter()
 
@@ -39,34 +39,34 @@ export default function MobileNav(){
     },[userProfile])
 
 
-    const handleSeenMessages = async (user:UserDiscussion)=>{
-        try{
-            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/seen/${user.id}/`)
-            if(!response.ok){
-                const error = await response.json()
-                throw new Error(error)
-            }
-            // const data = await response.json()
+    // const handleSeenMessages = async (user:UserDiscussion)=>{
+    //     try{
+    //         const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/seen/${user.id}/`)
+    //         if(!response.ok){
+    //             const error = await response.json()
+    //             throw new Error(error)
+    //         }
+    //         // const data = await response.json()
 
-            setDiscussions((prev:UserDiscussion[])=>{
-                const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
-                    if(discussion.id == user.id){
-                        const updatedDiscussion:UserDiscussion = {
-                            ...discussion,
-                            unread_count:0,
-                        }
-                        return updatedDiscussion
-                    }
-                    return discussion
-                })
-                return updatedDiscussions
-            })
+    //         setDiscussions((prev:UserDiscussion[])=>{
+    //             const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
+    //                 if(discussion.id == user.id){
+    //                     const updatedDiscussion:UserDiscussion = {
+    //                         ...discussion,
+    //                         unread_count:0,
+    //                     }
+    //                     return updatedDiscussion
+    //                 }
+    //                 return discussion
+    //             })
+    //             return updatedDiscussions
+    //         })
 
-        }catch(e){
-            const error = e as Error
-            toast.error(error.message)
-        }
-    }
+    //     }catch(e){
+    //         const error = e as Error
+    //         toast.error(error.message)
+    //     }
+    // }
 
 
 
@@ -219,7 +219,7 @@ export default function MobileNav(){
                 const error= await response.json()
                 throw new Error(error)
             }
-            const data = await response.json()
+            // const data = await response.json()
             localStorage.removeItem('access')
             setUserProfile(undefined)
             setNotifications([])

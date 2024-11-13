@@ -1,10 +1,8 @@
-import { AppContext } from "@/contexts/AppContext";
 import { Notification, PostType } from "@/utils/Types";
 import { formatDistanceToNowStrict } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import PostPopup from "../navigation/PostPopup";
 
 

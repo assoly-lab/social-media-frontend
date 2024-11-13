@@ -113,7 +113,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
             <div className="w-[90%] max-h-[80dvh] md:w-[80%] md:h-[60vh] bg-white rounded-md flex flex-col md:flex-row overflow-y-auto" onClick={(e)=>e.stopPropagation()}>
                 <div className="relative md:full md:w-[60%] flex flex-col pl-4 py-4 md:flex-row md:justify-center">
                     <div className="relative w-full flex items-center gap-2 mb-4 md:hidden">
-                        <Image src={post.author?.userprofile?.avatar!} width={50} height={50} alt="Post author profile picture" className="w-[50px] h-[50px] rounded-full" />
+                        <Image src={post.author.userprofile.avatar} width={50} height={50} alt="Post author profile picture" className="w-[50px] h-[50px] rounded-full" />
                         <Link href={`/profile/${post.author?.id}`} ><p className="text-[#7F265B] font-semibold">{post.author?.username}</p></Link>
                         <p className="text-xs font-normal text-gray-400 self-end absolute left-14 top-9" >{timeAgo}</p>
                     </div>
@@ -130,7 +130,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
                 </div>
                 <div className="w-full md:w-[40%] pl-4 pt-2 md:pt-4 rounded-r-md flex flex-col gap-4 ">
                     <div className="hidden relative md:flex justify- items-center gap-2">
-                        <Image src={post.author?.userprofile?.avatar!} width={50} height={50} alt="Post author profile picture" className="w-[50px] h-[50px] rounded-full" />
+                        <Image src={post.author.userprofile.avatar} width={50} height={50} alt="Post author profile picture" className="w-[50px] h-[50px] rounded-full" />
                         <Link href={`/profile/${post.author?.id}`} ><p className="text-[#7F265B] font-semibold">{post.author?.username}</p></Link>
                         <p className="text-xs font-normal text-gray-400 self-end absolute left-14 top-9" >{timeAgo}</p>
                     </div>

@@ -115,7 +115,7 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
             <div className="flex items-center justify-between gap-4">
                 <div className="flex flex-col ">
                 <div className="relative flex items-center justify-center gap-4" >
-                    <Image src={post.author?.userprofile?.avatar!.startsWith('http') ? post.author?.userprofile?.avatar! : `https://tornado008.pythonanywhere.com${post.author?.userprofile?.avatar!}`} width={40} height={40} alt="user profile picture" className="w-[40px] h-[40px] rounded-full"  />
+                    <Image src={post.author.userprofile.avatar.startsWith('http') ? post.author.userprofile.avatar : `https://tornado008.pythonanywhere.com${post.author.userprofile.avatar}`} width={40} height={40} alt="user profile picture" className="w-[40px] h-[40px] rounded-full"  />
                     <Link href={userProfile ? userProfile.user.id === post.author?.id ?'/profile' : `/profile/${post?.author?.id}` : `/profile/${post?.author?.id}`}><p className="text-lg font-semibold text-[#7F265B]">{post.author?.username}</p></Link>
                     <p className="absolute text-xs font-normal text-gray-400 top-8 left-14">{timeAgo}</p>
                 </div>

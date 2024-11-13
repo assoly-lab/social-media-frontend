@@ -9,18 +9,18 @@ import { IoClose } from "react-icons/io5";
 
 
 export default function EditProfile(){
-    const [isOpen,setIsOpen] = useState<Boolean>(false)
+    const [isOpen,setIsOpen] = useState<boolean>(false)
     const [updateFormErrors,setUpdateFormErrors] = useState<UpdateErrorsType>({})
     const [profileImage,setProfileImage] = useState<string>('')
     const { userProfile,setUserProfile } = useContext(AppContext)
     return (
         <>
-        <FaRegEdit className="absolute top-2 right-2 text-[#7F265B] w-6 h-6 cursor-pointer hover:scale-110 transition duration-200 ease-in-out"  onClick={()=>{setIsOpen((prev:Boolean)=>!prev)
+        <FaRegEdit className="absolute top-2 right-2 text-[#7F265B] w-6 h-6 cursor-pointer hover:scale-110 transition duration-200 ease-in-out"  onClick={()=>{setIsOpen((prev:boolean)=>!prev)
         setProfileImage('')
         }}/>
         {
             isOpen &&
-            <div className="overlay fixed z-[60] top-0 left-0 w-full h-screen bg-black/35 flex justify-center items-center" onClick={()=>{setIsOpen((prev:Boolean)=>!prev)
+            <div className="overlay fixed z-[60] top-0 left-0 w-full h-screen bg-black/35 flex justify-center items-center" onClick={()=>{setIsOpen((prev:boolean)=>!prev)
             setProfileImage('')
             }}>
                 <form className="relative w-[90%] h-[90%] overflow-y-scroll md:overflow-auto pb-4 md:w-[40%] md:h-[90%]  bg-white rounded-md flex flex-col items-center" action={async(formData:FormData)=>{
@@ -70,7 +70,7 @@ export default function EditProfile(){
                             const data = await response.json()
                             toast.success('Profile updated successfully')
                             setUserProfile(data)
-                            setIsOpen((prev:Boolean)=>!prev)
+                            setIsOpen((prev:boolean)=>!prev)
                         }catch(e){
                             const error = e as Error
                             errors.general = error.message
@@ -80,7 +80,7 @@ export default function EditProfile(){
                     }
 
                 }} onClick={(e)=>e.stopPropagation()} >
-                    <IoClose className="absolute top-2 right-2 w-6 h-6 text-red-600 cursor-pointer hover:text-red-700 hover:scale-110 transition duration-300 ease-in-out" onClick={()=>setIsOpen((prev:Boolean)=>!prev)} />
+                    <IoClose className="absolute top-2 right-2 w-6 h-6 text-red-600 cursor-pointer hover:text-red-700 hover:scale-110 transition duration-300 ease-in-out" onClick={()=>setIsOpen((prev:boolean)=>!prev)} />
                 <h1 className="text-2xl font-medium my-8">Update your informations</h1>
                 <div className="w-[70%] flex items-center justify-center gap-4">
                     <Image src={profileImage ? profileImage : userProfile.avatar} width={100} height={100} alt="user profile image" className="w-[100px] h-[100px] object-fit"/>
@@ -93,7 +93,7 @@ export default function EditProfile(){
                                     {/* <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center"><span className="font-semibold">Click to upload</span> or drag and drop</p> */}
                                     {/* <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p> */}
                                 </div>
-                                <input id="avatar" name="updated-avatar" type="file" className="hidden" accept="image/*" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{ e.target.files && setProfileImage(URL.createObjectURL(e.target.files[0]))}}
+                                <input id="avatar" name="updated-avatar" type="file" className="hidden" accept="image/*" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{ if(e.target.files) setProfileImage(URL.createObjectURL(e.target.files[0]))}}
                                 />
                             </label>
                         </div>
