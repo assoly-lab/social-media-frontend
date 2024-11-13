@@ -7,8 +7,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.vercel.app",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/api/media/**",
+      },
     ],
-    domains: ["social-media-frontend-woad.vercel.app"],
   },
 };
 
