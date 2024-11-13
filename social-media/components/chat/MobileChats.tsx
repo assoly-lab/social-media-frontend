@@ -179,6 +179,7 @@ export default function MobileChats(){
             if(topSentinelRef.current){
                 observerRef.current?.unobserve(topSentinelRef.current)
             }
+            observerRef.current?.disconnect()
         }
         
     },[hasMounted,oldMessages])
