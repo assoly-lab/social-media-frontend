@@ -5,15 +5,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.vercel.app",
-      },
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3000",
-        pathname: "/api/media/**",
+        hostname: "tornado008.pythonanywhere",
+        pathname: "/media/**/**",
       },
     ],
+    domains: ["tornado008.pythonanywhere.com"],
   },
 };
 
