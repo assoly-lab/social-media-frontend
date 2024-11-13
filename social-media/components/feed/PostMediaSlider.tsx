@@ -43,7 +43,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
             if(accessToken){
                 if(isLiked){
                     try{
-                        const response = await fetchWithAuth('http://localhost:8000/api/post/unlike/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/post/unlike/',{
                             method:'DELETE',
                             headers:{
                                 'Content-Type':'application/json',
@@ -63,7 +63,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
                     }
                 }else{
                     try{
-                        const response = await fetchWithAuth('http://localhost:8000/api/post/like/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/post/like/',{
                             method:'POST',
                             headers:{
                                 'Content-Type':'application/json',
@@ -156,7 +156,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
                         formData.append('post_id',post.id?.toString() as string)
                         
                         try{
-                            const response = await fetchWithAuth('http://localhost:8000/api/comments/create/',{
+                            const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comments/create/',{
                                 method:'POST',
                                 body:formData
                             })

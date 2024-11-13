@@ -33,7 +33,7 @@ export default function Profile(){
             const access = localStorage.getItem('access')
             if(access){
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/get/profile/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/get/profile/',{
                         headers:{
                             'Content-Type':'application/json',
                         }
@@ -131,7 +131,7 @@ const UploadInput = ({setUpdatedUserProfile}:{setUpdatedUserProfile:React.Dispat
                         try{
                         const formData = new FormData
                         formData.append('avatar',e.target.files[0])
-                        const response = await fetchWithAuth('http://localhost:8000/api/update/profile/pic/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/update/profile/pic/',{
                             method: 'PUT',
                             body:formData
 

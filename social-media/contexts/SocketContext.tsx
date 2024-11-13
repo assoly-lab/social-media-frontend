@@ -1,12 +1,9 @@
 'use client'
 
 
-import { fetchWithAuth, isTokenExpired } from "@/utils/Helpers";
-import { MessagePayload, MessageType, Notification, UserData, UserDiscussion } from "@/utils/Types";
-import { usePathname } from "next/navigation";
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
-import { AppContext } from "./AppContext";
+import { MessageType, Notification, UserDiscussion } from "@/utils/Types";
+import React, { createContext, useRef, useState } from "react";
+
 
 
 

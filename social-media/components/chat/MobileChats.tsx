@@ -118,7 +118,7 @@ export default function MobileChats(){
         const getDiscussion = async()=>{
             if(selectedUser){
                 try{
-                    const response = await fetchWithAuth(`http://localhost:8000/api/discussions/${selectedUser.id}/`)
+                    const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/${selectedUser.id}/`)
                     if(!response.ok){
                         const error = await response.json()
                         throw new Error(error)
@@ -195,7 +195,7 @@ export default function MobileChats(){
             const access = localStorage.getItem('access')
             if(access){
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/get/profile/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/get/profile/',{
                         headers:{
                             'Content-Type':'application/json',
                         }
@@ -222,7 +222,7 @@ export default function MobileChats(){
     const getUserDiscussions = async()=>{
         if(userProfile){
         try{
-            const response = await fetchWithAuth(`http://localhost:8000/api/discussions/list/`)
+            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/list/`)
             if(!response.ok){
                 const error = await response.json()
                 throw new Error(error)
@@ -301,7 +301,7 @@ export default function MobileChats(){
                 style={{marginTop: isList ? '1rem' : 0}}
                 className="w-full  flex-1 flex flex-col overflow-y-auto">
                     <div className="pl-4 h-16 bg-[#7F265B] flex gap-4 items-center py-2">
-                        <Image className="rounded-full object-contain" src={selectedUser?.avatar.startsWith('http') ? selectedUser?.avatar : `http://localhost:8000/media/${selectedUser.avatar}`} width={50} height={50} alt="user's profile avatar" />
+                        <Image className="rounded-full object-contain" src={selectedUser?.avatar.startsWith('http') ? selectedUser?.avatar : `https://tornado008.pythonanywhere.com/media/${selectedUser.avatar}`} width={50} height={50} alt="user's profile avatar" />
                         <p className="text-white font-semibold">{selectedUser.username}</p>
                     </div>
                     <div ref={messagesDivRef} className="relative mb-2 bg-[#ffe5c4] w-full overflow-y-auto gap-2 py-2">

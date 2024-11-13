@@ -1,7 +1,6 @@
-import { AppContext } from "@/contexts/AppContext"
 import { fetchWithAuth } from "@/utils/Helpers"
 import { CommentType } from "@/utils/Types"
-import React, { useContext,useEffect,useRef, useState } from "react"
+import React, { useEffect,useRef, useState } from "react"
 import toast from "react-hot-toast"
 import Emojis from "../posts/Emojis"
 
@@ -9,7 +8,6 @@ import Emojis from "../posts/Emojis"
 
 
 export default function EditComment({comment,postId,setComments,setIsEditComment}:{comment:CommentType,postId:number,setComments:React.Dispatch<React.SetStateAction<CommentType[]>>,setIsEditComment:React.Dispatch<React.SetStateAction<Boolean>>}){
-    const {userProfile} = useContext(AppContext)
     const [accessToken,setAccessToken] = useState<string>('')
     const ref = useRef<HTMLTextAreaElement>(null)
 
@@ -32,7 +30,7 @@ export default function EditComment({comment,postId,setComments,setIsEditComment
                     formData.append('comment_id',comment.id.toString())
                     formData.append('post_id',postId.toString())
                     try{
-                        const response = await fetchWithAuth('http://localhost:8000/api/comments/update/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comments/update/',{
                             method:'PUT',
                             body:formData
                         })

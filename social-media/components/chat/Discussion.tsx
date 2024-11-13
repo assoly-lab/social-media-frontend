@@ -68,7 +68,7 @@ export default function Discussion({user}:{user:any}){
         const getDiscussion = async()=>{
             if(user){
                 try{
-                    const response = await fetchWithAuth(`http://localhost:8000/api/discussions/${user.id}/`)
+                    const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/${user.id}/`)
                     if(!response.ok){
                         const error = await response.json()
                         throw new Error(error)
@@ -185,7 +185,7 @@ export default function Discussion({user}:{user:any}){
     return (
         <div className="w-full flex flex-col gap-2">
             <div className="w-full bg-[#7F265B] py-4 pl-4 flex items-center gap-4">
-                <Image className="rounded-full" src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:8000/media/${user.avatar}`} width={50} height={50} alt="user's profile avatar" />
+                <Image className="rounded-full" src={user.avatar.startsWith('http') ? user.avatar : `https://tornado008.pythonanywhere.com/media/${user.avatar}`} width={50} height={50} alt="user's profile avatar" />
                 <p className="text-white text-xl font-medium ">{user.username}</p>
             </div>
             <div ref={messagesDivRef} className="bg-white w-full h-full overflow-auto gap-2 py-2">

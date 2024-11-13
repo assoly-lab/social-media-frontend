@@ -40,7 +40,7 @@ export default function Post({post}:{post:PostType}){
         if(accessToken){
             if(isLiked){
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/post/unlike/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/post/unlike/',{
                         method:'DELETE',
                         headers:{
                             'Content-Type':'application/json',
@@ -60,7 +60,7 @@ export default function Post({post}:{post:PostType}){
                 }
             }else{
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/post/like/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/post/like/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -111,7 +111,7 @@ export default function Post({post}:{post:PostType}){
             <div className="flex items-center justify-between gap-4">
                 <div className="flex flex-col ">
                 <div className="relative flex items-center justify-center gap-4" >
-                    <Image src={post.author?.userprofile?.avatar!.startsWith('http') ? post.author?.userprofile?.avatar! : `http://localhost:8000${post.author?.userprofile?.avatar!}`} width={40} height={40} alt="user profile picture" className="w-[40px] h-[40px] rounded-full"  />
+                    <Image src={post.author?.userprofile?.avatar!.startsWith('http') ? post.author?.userprofile?.avatar! : `https://tornado008.pythonanywhere.com${post.author?.userprofile?.avatar!}`} width={40} height={40} alt="user profile picture" className="w-[40px] h-[40px] rounded-full"  />
                     <Link href={userProfile ? userProfile.user.id === post.author?.id ?'/profile' : `/profile/${post?.author?.id}` : `/profile/${post?.author?.id}`}><p className="text-lg font-semibold text-[#7F265B]">{post.author?.username}</p></Link>
                     <p className="absolute left-14 top-8 text-xs font-normal text-gray-400">{timeAgo}</p>
                 </div>
@@ -148,9 +148,9 @@ export default function Post({post}:{post:PostType}){
                     return (
                         <div key={media.id} className={`relative flex cursor-pointer justify-center ${post.media!.length >= 3 && index === 0 ? 'row-span-4' : post.media!.length >= 3 && index === 1 ? 'row-span-2' : post.media!.length >= 3 && index === 2  ? 'row-span-2' : post.media!.length >= 3 && index === 3 && 'row-span-2 col-start-2 row-start-3'}`} onClick={()=>setShowMediaSlider(true)} >
                         { media.media_type == 'image' ?
-                        <Image src={media.file.startsWith('http') ? media.file : `http://localhost:8000${media.file}` }  width={300} height={300} alt="Post media file" className="w-auto h-auto object-cover z-40" onClick={()=>setMediaIndex(index)}/>
+                        <Image src={media.file.startsWith('http') ? media.file : `https://tornado008.pythonanywhere.com${media.file}` }  width={300} height={300} alt="Post media file" className="w-auto h-auto object-cover z-40" onClick={()=>setMediaIndex(index)}/>
                         :
-                        <video src={media.file.startsWith('http') ? media.file : `http://localhost:8000${media.file}` }  width={300} height={300} controls className="w-auto h-auto object-cover z-40 cursor-pointer pointer-events-none"  ></video>
+                        <video src={media.file.startsWith('http') ? media.file : `https://tornado008.pythonanywhere.com${media.file}` }  width={300} height={300} controls className="w-auto h-auto object-cover z-40 cursor-pointer pointer-events-none"  ></video>
 
                         }
                         </div>
@@ -161,9 +161,9 @@ export default function Post({post}:{post:PostType}){
                     return (
                         <div key={media.id} className={`relative flex cursor-pointer ${post.media!.length >= 3 && index === 0 ? 'row-span-4' : post.media!.length >= 3 && index === 1 ? 'row-span-4' : post.media!.length >= 3 && index === 2  ? 'row-span-2' : post.media!.length >= 3 && index === 3 && 'row-span-2 col-start-3 row-start-3'}`} onClick={()=>setShowMediaSlider(true)} >
                         { media.media_type == 'image' ?
-                        <Image src={media.file.startsWith('http') ? media.file : `http://localhost:8000${media.file}` } width={300} height={300} alt="Post media file" className="w-auto h-auto object-cover z-40" onClick={()=>setMediaIndex(index)} />
+                        <Image src={media.file.startsWith('http') ? media.file : `https://tornado008.pythonanywhere.com${media.file}` } width={300} height={300} alt="Post media file" className="w-auto h-auto object-cover z-40" onClick={()=>setMediaIndex(index)} />
                         :
-                        <video src={media.file.startsWith('http') ? media.file : `http://localhost:8000${media.file}` } width={300} height={300} controls className="w-auto h-auto object-cover z-40 pointer-events-none" ></video>
+                        <video src={media.file.startsWith('http') ? media.file : `https://tornado008.pythonanywhere.com${media.file}` } width={300} height={300} controls className="w-auto h-auto object-cover z-40 pointer-events-none" ></video>
 
                         }
                         </div>
@@ -206,7 +206,7 @@ export default function Post({post}:{post:PostType}){
                     formData.append('post_id',post.id?.toString() as string)
                     
                     try{
-                        const response = await fetchWithAuth('http://localhost:8000/api/comments/create/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comments/create/',{
                             method:'POST',
                             body:formData
                         })

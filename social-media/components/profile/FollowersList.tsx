@@ -42,7 +42,7 @@ export default function FollowersList({followers,setShowFollowers}:{followers:Fo
                     return (
                         <div key={follower.id} className="flex w-[80%] items-center justify-between ">
                             <div className="flex items-center gap-2">
-                                <Image src={follower.avatar.startsWith('http') ? follower.avatar : `http://localhost:8000/media/${follower.avatar}` } width={40} height={40} alt="Follower's profile avatar" />
+                                <Image src={follower.avatar.startsWith('http') ? follower.avatar : `https://tornado008.pythonanywhere.com/media/${follower.avatar}` } width={40} height={40} alt="Follower's profile avatar" />
                                 <p className="text-lg font-medium text-[#7F265B] ">{follower.username}</p>
                             </div>
                             {<RenderCta follower={follower} />}

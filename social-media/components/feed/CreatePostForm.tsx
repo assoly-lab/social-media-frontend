@@ -37,7 +37,7 @@ export default function CreatePostForm(){
             if(access){
                 console.log('fetching user profile')
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/get/profile/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/get/profile/',{
                         headers:{
                             'Content-Type':'application/json',
                         }
@@ -69,7 +69,7 @@ export default function CreatePostForm(){
                 }
 
                 try{
-                    const response =  await fetchWithAuth('http://localhost:8000/api/posts/create/',{
+                    const response =  await fetchWithAuth('https://tornado008.pythonanywhere.com/api/posts/create/',{
                         method: 'POST',
                         body:formData
                     })

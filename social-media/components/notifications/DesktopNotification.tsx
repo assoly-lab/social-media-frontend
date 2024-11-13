@@ -32,7 +32,7 @@ export default function DesktopNotification({notification}:{notification:Notific
                 }
                 >
             {!notification.post && <Link href={`/profile/${notification.user.id}`} className="absolute w-full inset-0 h-full"></Link>}
-                <Image className="rounded-full" src={notification.avatar.startsWith('http') ? notification.avatar : `http://localhost:8000/media/${notification.avatar}`} width={50} height={50} alt="user's profile avatar" />
+                <Image className="rounded-full" src={notification.avatar.startsWith('http') ? notification.avatar : `https://tornado008.pythonanywhere.com/media/${notification.avatar}`} width={50} height={50} alt="user's profile avatar" />
                 <p className="text-[#7F265B]">{notification.message}</p>
                 <p className="text-gray-400 text-xs">{timeAgo}</p>
             </div>

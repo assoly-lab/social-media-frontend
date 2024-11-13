@@ -41,7 +41,7 @@ export default function MobileNav(){
 
     const handleSeenMessages = async (user:UserDiscussion)=>{
         try{
-            const response = await fetchWithAuth(`http://localhost:8000/api/discussions/seen/${user.id}/`)
+            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/seen/${user.id}/`)
             if(!response.ok){
                 const error = await response.json()
                 throw new Error(error)
@@ -190,7 +190,7 @@ export default function MobileNav(){
             const access = localStorage.getItem('access')
             if(access){
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/get/profile/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/get/profile/',{
                         headers:{
                             'Content-Type':'application/json',
                         }
@@ -212,7 +212,7 @@ export default function MobileNav(){
 
     const handleLogout = async()=>{
         try{
-            const response = await fetchWithAuth('http://localhost:8000/api/auth/jwt/logout/',{
+            const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/auth/jwt/logout/',{
                 method: 'POST',
             })
             if(!response.ok){
@@ -239,7 +239,7 @@ export default function MobileNav(){
         const getUserNotifications = async ()=>{
         if(userProfile){
             try{
-                const response = await fetchWithAuth(`http://localhost:8000/api/notifications/get/${userProfile.user.id}/`)
+                const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/notifications/get/${userProfile.user.id}/`)
                 if(!response.ok){
                     const error = await response.json()
                     throw new Error(error)
@@ -262,7 +262,7 @@ export default function MobileNav(){
 
     const handleSeenNotifications = async ()=>{
         try{
-            const response = await fetchWithAuth(`http://localhost:8000/api/notifications/seen/`)
+            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/notifications/seen/`)
             if(!response.ok){
                 const error = await response.json()
                 throw new Error(error)

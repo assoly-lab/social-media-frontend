@@ -21,7 +21,7 @@ export default function Reply({reply,setReplies,postId}:{reply:CommentType,setRe
             <div className="ml-5 my-2">
                 <div className="flex justify-between w-[90%]">
                     <div className="flex gap-2 items-center">
-                        <Image src={`http://localhost:8000${reply.author.avatar}`} width={20} height={20} alt="reply author profile picture" />
+                        <Image src={`https://tornado008.pythonanywhere.com${reply.author.avatar}`} width={20} height={20} alt="reply author profile picture" />
                         <span className="text-sm text-[#7F265B]">{reply.author.user.username}</span>
                     </div>
                     {userProfile && userProfile.user.username === reply.author.user.username && 

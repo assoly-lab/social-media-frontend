@@ -45,7 +45,7 @@ export default function EditPost({setIsEditPost,post}:{setIsEditPost:React.Dispa
                 }
 
                 try{
-                    const response =  await fetchWithAuth('http://localhost:8000/api/posts/update/',{
+                    const response =  await fetchWithAuth('https://tornado008.pythonanywhere.com/api/posts/update/',{
                         method: 'POST',
                         body:formData
                     })

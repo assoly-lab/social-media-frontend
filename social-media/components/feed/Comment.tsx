@@ -32,7 +32,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
         if(accessToken){
             if(isCommentLiked){
                 try{
-                    const response= await fetchWithAuth('http://localhost:8000/api/comment/unlike/',{
+                    const response= await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comment/unlike/',{
                         method:'DELETE',
                         headers:{
                             'Content-Type':'application/json',
@@ -55,7 +55,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
                 }
             }else{
                 try{
-                    const response= await fetchWithAuth('http://localhost:8000/api/comment/like/',{
+                    const response= await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comment/like/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -93,7 +93,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
             <div className="flex flex-col gap-2">
                 <div className="flex justify-between">
                     <div className="flex gap-2 items-center">
-                        <Image src={`http://localhost:8000${comment.author.avatar}`} width={30} height={30} alt="comment author profile picture" />
+                        <Image src={`https://tornado008.pythonanywhere.com${comment.author.avatar}`} width={30} height={30} alt="comment author profile picture" />
                         <span className="text-sm text-[#7F265B]">{comment.author.user.username}</span>
                     </div>
 
@@ -133,7 +133,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
                     formData.append('parent_id',comment.id.toString())
                     formData.append('post_id',postId.toString())
                     try{
-                        const response = await fetchWithAuth('http://localhost:8000/api/comments/create/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comments/create/',{
                             method:'POST',
                             body:formData
                         })

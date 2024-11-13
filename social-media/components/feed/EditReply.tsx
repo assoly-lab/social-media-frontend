@@ -31,7 +31,7 @@ export default function EditReply({reply,setReplies,setIsEditReply,postId}:{repl
                     formData.append('post_id',postId.toString())
                     formData.append('parent_id',reply.parent!.toString())
                     try{
-                        const response = await fetchWithAuth('http://localhost:8000/api/reply/update/',{
+                        const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/reply/update/',{
                             method:'PUT',
                             body:formData
                         })

@@ -1,6 +1,6 @@
 import  { CommentType } from "@/utils/Types";
 import Comment from "@/components/feed/Comment"
-import React, { useState } from "react";
+import React from "react";
 
 
 

@@ -53,7 +53,7 @@ export default function PublicUserProfile(){
     useEffect(()=>{
         const getFollowersList = async()=>{
             try{
-                const response = await fetch(`http://localhost:8000/api/followers/${params.id}`,{
+                const response = await fetch(`https://tornado008.pythonanywhere.com/api/followers/${params.id}`,{
                     headers:{
                         'Content-Type':'application/json',
                     }
@@ -79,7 +79,7 @@ export default function PublicUserProfile(){
     useEffect(()=>{
         const getFollowingList = async()=>{
             try{
-                const response = await fetch(`http://localhost:8000/api/following/${params.id}`,{
+                const response = await fetch(`https://tornado008.pythonanywhere.com/api/following/${params.id}`,{
                     headers:{
                         'Content-Type':'application/json',
                     }
@@ -106,7 +106,7 @@ export default function PublicUserProfile(){
         const getUserProfile = async (userId:string)=>{
             if(acccessToken){
             try{
-                const response = await fetchWithAuth(`http://localhost:8000/api/get/public_profile/${userId}/`)
+                const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/get/public_profile/${userId}/`)
                 if(!response.ok){
                     throw new Error('Something went wrong')
                 }
@@ -118,7 +118,7 @@ export default function PublicUserProfile(){
             }
         }else{
             try{
-                const response = await fetch(`http://localhost:8000/api/get/public_profile/${userId}/`,{
+                const response = await fetch(`https://tornado008.pythonanywhere.com/api/get/public_profile/${userId}/`,{
                 headers: {
                     'Content-Type':'application/json',
                 }
@@ -144,7 +144,7 @@ export default function PublicUserProfile(){
             const accessToken = localStorage.getItem('access')
             if (accessToken){
                 try {
-                    const response = await fetchWithAuth(`http://localhost:8000/api/posts/get/${params.id}/`)
+                    const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/posts/get/${params.id}/`)
                     if(!response.ok){
                         const data = await response.json()
                         setLoadingPosts(false)
@@ -161,7 +161,7 @@ export default function PublicUserProfile(){
                 }
             }else{
                 try {
-                    const response = await fetch(`http://localhost:8000/api/posts/get/${params.id}/`)
+                    const response = await fetch(`https://tornado008.pythonanywhere.com/api/posts/get/${params.id}/`)
                     if(!response.ok){
                         const data = await response.json()
                         setLoadingPosts(false)
@@ -187,7 +187,7 @@ export default function PublicUserProfile(){
         if(accessToken){
         if(publicUserProfile && publicUserProfile.is_following){
             try{
-                const response = await fetchWithAuth('http://localhost:8000/api/unfollow/',{
+                const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/unfollow/',{
                     method: 'DELETE',
                     headers:{
                         'Content-Type':'application/json',
@@ -208,7 +208,7 @@ export default function PublicUserProfile(){
             }
         }else if(publicUserProfile && !publicUserProfile.is_following){
             try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/follow/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/follow/',{
                         method: 'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -256,7 +256,7 @@ export default function PublicUserProfile(){
                 <>
                     <Image 
                         className="rounded-full absolute left-[50%] translate-x-[-50%] translate-y-[-45%] border-2 border-[#7F265B] cursor-pointer w-[150px] h-[150px] object-cover" 
-                        src={publicUserProfile.avatar.startsWith('http') ? publicUserProfile.avatar : `http://localhost:8000${publicUserProfile.avatar}`} width={150} height={150} alt="user profile image" 
+                        src={publicUserProfile.avatar.startsWith('http') ? publicUserProfile.avatar : `https://tornado008.pythonanywhere.com${publicUserProfile.avatar}`} width={150} height={150} alt="user profile image" 
                         priority
                         />
                     <p className="text-2xl text-black font-semibold text-center mt-20 capitalize  ">{publicUserProfile.user.first_name} {publicUserProfile.user.last_name}</p>

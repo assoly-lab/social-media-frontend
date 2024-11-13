@@ -17,7 +17,7 @@ export default function PostSettings({post,setShowSettings,setIsEditPost}:{post:
 
     const handleDeletePost = async(post:PostType)=>{
         try{
-            const response = await fetchWithAuth('http://localhost:8000/api/posts/delete/',{
+            const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/posts/delete/',{
                 method:'DELETE',
                 headers:{
                     'Content-Type':'application/json',

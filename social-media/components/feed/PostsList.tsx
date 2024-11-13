@@ -27,7 +27,7 @@ export default function PostsList(){
             const access = localStorage.getItem('access')
             if (access){
                 try {
-                    const response = await fetchWithAuth('http://localhost:8000/api/feed/')
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/feed/')
                     if(!response.ok){
                         const data = await response.json()
                         setLoadingPosts(false)
@@ -44,7 +44,7 @@ export default function PostsList(){
                 }
             }else{
                 try {
-                    const response = await fetch('http://localhost:8000/api/feed/')
+                    const response = await fetch('https://tornado008.pythonanywhere.com/api/feed/')
                     if(!response.ok){
                         const data = await response.json()
                         setLoadingPosts(false)

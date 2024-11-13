@@ -61,7 +61,7 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
         if(accessToken){
             if(isLiked){
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/post/unlike/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/post/unlike/',{
                         method:'DELETE',
                         headers:{
                             'Content-Type':'application/json',
@@ -81,7 +81,7 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
                 }
             }else{
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/post/like/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/post/like/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -117,7 +117,7 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
             <div className="flex items-center justify-between gap-4">
                 <div className="flex flex-col ">
                 <div className="relative flex items-center justify-center gap-4" >
-                    <Image src={post.author?.userprofile?.avatar!.startsWith('http') ? post.author?.userprofile?.avatar! : `http://localhost:8000${post.author?.userprofile?.avatar!}`} width={40} height={40} alt="user profile picture" className="w-[40px] h-[40px] rounded-full"  />
+                    <Image src={post.author?.userprofile?.avatar!.startsWith('http') ? post.author?.userprofile?.avatar! : `https://tornado008.pythonanywhere.com${post.author?.userprofile?.avatar!}`} width={40} height={40} alt="user profile picture" className="w-[40px] h-[40px] rounded-full"  />
                     <Link href={userProfile ? userProfile.user.id === post.author?.id ?'/profile' : `/profile/${post?.author?.id}` : `/profile/${post?.author?.id}`}><p className="text-lg font-semibold text-[#7F265B]">{post.author?.username}</p></Link>
                     <p className="absolute text-xs font-normal text-gray-400 top-8 left-14">{timeAgo}</p>
                 </div>

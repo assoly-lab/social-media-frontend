@@ -27,7 +27,7 @@ export default function Chats(){
             const access = localStorage.getItem('access')
             if(access){
                 try{
-                    const response = await fetchWithAuth('http://localhost:8000/api/get/profile/',{
+                    const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/get/profile/',{
                         headers:{
                             'Content-Type':'application/json',
                         }
@@ -55,7 +55,7 @@ export default function Chats(){
     const getUserDiscussions = async()=>{
         if(userProfile){
         try{
-            const response = await fetchWithAuth(`http://localhost:8000/api/discussions/list/`)
+            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/list/`)
             if(!response.ok){
                 const error = await response.json()
                 throw new Error(error)

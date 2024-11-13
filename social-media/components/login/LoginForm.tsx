@@ -36,7 +36,7 @@ export default function LoginForm(){
                 
                     if(Object.keys(errors).length == 0){
                         try{
-                            const response = await fetch('http://localhost:8000/api/auth/jwt/create/',{
+                            const response = await fetch('https://tornado008.pythonanywhere.com/api/auth/jwt/create/',{
                                 method:'POST',
                                 body:formData,
                                 credentials:'include',

@@ -29,7 +29,7 @@ export default function NavBar(){
                 <div className="logo flex items-center">
                     <Link href={'/'} className="text-[#7F265B] text-3xl font-semibold">I-Social</Link>
                 </div>
-                {/* <MobileNav  /> */}
+                <MobileNav  />
                 <DesktopNav   />
                 
             </div>

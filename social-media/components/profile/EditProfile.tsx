@@ -58,7 +58,7 @@ export default function EditProfile(){
                     if(Object.keys(errors).length == 10){
                         
                         try{
-                            const response = await fetchWithAuth('http://localhost:8000/api/update/profile/',{
+                            const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/update/profile/',{
                                 method:'PATCH',
                                 body:newFormData
                             })

@@ -11,7 +11,7 @@ export default function UsersList({users}:{users:UserDiscussion[]}){
     const {selectedUser,setSelectedUser,setDiscussions } = useContext(SocketContext)
     const handleSeenMessages = async (user:UserDiscussion)=>{
         try{
-            const response = await fetchWithAuth(`http://localhost:8000/api/discussions/seen/${user.id}/`)
+            const response = await fetchWithAuth(`https://tornado008.pythonanywhere.com/api/discussions/seen/${user.id}/`)
             if(!response.ok){
                 const error = await response.json()
                 throw new Error(error)
@@ -56,7 +56,7 @@ export default function UsersList({users}:{users:UserDiscussion[]}){
 
                 }
                     } >
-                    <Image className="rounded-full" src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:8000/media/${user.avatar}`} width={40} height={40} alt="user's profile avatar" />
+                    <Image className="rounded-full" src={user.avatar.startsWith('http') ? user.avatar : `https://tornado008.pythonanywhere.com/media/${user.avatar}`} width={40} height={40} alt="user's profile avatar" />
                     <p className="text-[#7F265B] font-semibold">{user.username}</p>
                     { user.unread_count > 0 &&
                     <p className="text-white font-semibold bg-red-400 px-2 py-0.5 rounded-full">{user.unread_count}</p>

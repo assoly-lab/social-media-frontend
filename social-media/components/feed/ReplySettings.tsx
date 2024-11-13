@@ -10,7 +10,7 @@ export default function ReplySettings({reply,setShowSettings,setIsEditReply,post
     
     const handleDeleteReply = async()=>{
         try{
-            const response = await fetchWithAuth('http://localhost:8000/api/reply/delete/',{
+            const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/reply/delete/',{
                 method:'DELETE',
                 headers:{
                     'Content-Type':'application/json',

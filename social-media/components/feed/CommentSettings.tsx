@@ -10,7 +10,7 @@ export default function CommentSettings({comment,setShowSettings,setIsEditCommen
 
     const handleDeleteComment = async()=>{
         try{
-            const response = await fetchWithAuth('http://localhost:8000/api/comments/delete/',{
+            const response = await fetchWithAuth('https://tornado008.pythonanywhere.com/api/comments/delete/',{
                 method:'DELETE',
                 headers:{
                     'Content-Type':'application/json',

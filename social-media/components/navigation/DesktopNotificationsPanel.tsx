@@ -1,15 +1,13 @@
 import { AppContext } from "@/contexts/AppContext";
-import { fetchWithAuth } from "@/utils/Helpers";
 import { Notification } from "@/utils/Types";
-import React, { useContext, useEffect } from "react";
-import toast from "react-hot-toast";
+import React, { useContext } from "react";
 import DesktopNotification from "../notifications/DesktopNotification";
 import {motion} from "framer-motion"
 
 
 
 export default function DesktopNotificationsPanel({notifications}:{notifications:Notification[]}){
-    const { userProfile,setShowNotificationsPanel } = useContext(AppContext)
+    const { setShowNotificationsPanel } = useContext(AppContext)
 
     
 

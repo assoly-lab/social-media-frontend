@@ -11,7 +11,7 @@ export function isTokenExpired(token: string): boolean {
 async function handleTokenExpiry() {
     try {
         // Call the logout API endpoint
-        await fetch('http://localhost:8000/api/auth/jwt/logout/', {
+        await fetch('https://tornado008.pythonanywhere.com/api/auth/jwt/logout/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function handleTokenExpiry() {
 // Function to request a new access token using the refresh token (stored in an HTTP-only cookie)
 async function refreshAccessToken(): Promise<string> {
     try {
-        const response = await fetch('http://localhost:8000/api/auth/jwt/refresh/', {
+        const response = await fetch('https://tornado008.pythonanywhere.com/api/auth/jwt/refresh/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
