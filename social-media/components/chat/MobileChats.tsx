@@ -19,7 +19,7 @@ import { MoonLoader } from "react-spinners"
 export default function MobileChats(){
 
     const { userProfile,setUserProfile } = useContext(AppContext)
-    const [isList,setIsList] = useState<Boolean>(false)
+    const [isList,setIsList] = useState<boolean>(false)
     const { messages,setMessages,setUnreadMessagesCounter,wsRef,selectedUser,discussions,setDiscussions } = useContext(SocketContext)
     const messageInputRef = useRef<HTMLTextAreaElement>(null)
     const messagesDivRef = useRef<HTMLDivElement>(null)
@@ -27,9 +27,9 @@ export default function MobileChats(){
     const bottomSentinelRef = useRef<HTMLDivElement>(null)
     const [oldMessages,setOldMessages] = useState<string|null>()
     const [lastMessageHeight,setLastMessageHeight] = useState<any | undefined>(undefined)
-    const [hasMounted,setHasMounted] = useState<Boolean>(false)
-    const [isLoading,setIsLoading] = useState<Boolean>(false)
-    const [isScrollButton,setIsScrollButton] = useState<Boolean>(true)
+    const [hasMounted,setHasMounted] = useState<boolean>(false)
+    const [isLoading,setIsLoading] = useState<boolean>(false)
+    const [isScrollButton,setIsScrollButton] = useState<boolean>(true)
     const observer = new IntersectionObserver((entries)=>{
         const [entry] = entries
         if(entry.isIntersecting){
@@ -108,8 +108,7 @@ export default function MobileChats(){
                  [selectedUser?.id]:[...prev[selectedUser?.id],messageData]
              }
              })
-            messageInputRef.current && 
-            (messageInputRef.current.value = '')
+            if(messageInputRef.current) messageInputRef.current.value = ''
         }
         }
 

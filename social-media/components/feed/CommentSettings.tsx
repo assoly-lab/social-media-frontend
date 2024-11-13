@@ -6,7 +6,7 @@ import { CommentType } from "@/utils/Types"
 
 
 
-export default function CommentSettings({comment,setShowSettings,setIsEditComment,postId,setComments,setCommentsCount}:{comment:CommentType,setShowSettings:React.Dispatch<React.SetStateAction<Boolean>>,setIsEditComment:React.Dispatch<React.SetStateAction<Boolean>>,postId:number,setComments:React.Dispatch<React.SetStateAction<CommentType[]>>,setCommentsCount:React.Dispatch<React.SetStateAction<number>>}){
+export default function CommentSettings({comment,setShowSettings,setIsEditComment,postId,setComments,setCommentsCount}:{comment:CommentType,setShowSettings:React.Dispatch<React.SetStateAction<boolean>>,setIsEditComment:React.Dispatch<React.SetStateAction<boolean>>,postId:number,setComments:React.Dispatch<React.SetStateAction<CommentType[]>>,setCommentsCount:React.Dispatch<React.SetStateAction<number>>}){
 
     const handleDeleteComment = async()=>{
         try{

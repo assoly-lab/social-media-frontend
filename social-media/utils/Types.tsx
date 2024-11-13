@@ -36,7 +36,7 @@ export type CommentType ={
     likes:number,
     parent: number | null; 
     replies:CommentType[] | [],
-    is_liked:Boolean,
+    is_liked:boolean,
     created_at:string,
 }
 
@@ -78,8 +78,8 @@ export type PostType = {
     id?:number,
     content?:string,
     media:Media[] | [],
-    is_public:Boolean,
-    is_liked?:Boolean,
+    is_public:boolean,
+    is_liked?:boolean,
     likes?:number,
     comments:CommentType[] | [],
     comments_count?:number,
@@ -119,7 +119,7 @@ export type PublicProfile = {
     user:PublicUser,
     following_count?:number,
     followers_count?:number,
-    is_following:Boolean,
+    is_following:boolean,
 }
 
 
@@ -128,7 +128,7 @@ export type Follower = {
     follower_id:number,
     avatar:string,
     username:string,
-    is_following:Boolean,
+    is_following:boolean,
     created_at:string,
 }
 
@@ -139,7 +139,7 @@ export type Following = {
     following_id:number,
     avatar:string,
     username:string,
-    is_following:Boolean,
+    is_following:boolean,
     created_at:string,
 }
 
@@ -151,7 +151,7 @@ export type Notification = {
     avatar:string,
     post?:PostType,
     message:string,
-    is_read:Boolean,
+    is_read:boolean,
     timestamp:string,
 }
 
@@ -159,7 +159,7 @@ export type MessagePayload = {
         id:number,
         content:string,
         sender:UserData,
-        is_read:Boolean,
+        is_read:boolean,
         created_at:string,
     }
 

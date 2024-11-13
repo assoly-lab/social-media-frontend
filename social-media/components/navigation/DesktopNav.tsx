@@ -8,14 +8,14 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdNotificationsOutline, IoMdSearch } from "react-icons/io";
 import React, { useContext, useEffect, useState } from "react";
 import DesktopNotificationsPanel from "./DesktopNotificationsPanel";
-import { fetchWithAuth, isTokenExpired } from "@/utils/Helpers";
+import { fetchWithAuth } from "@/utils/Helpers";
 import { AppContext } from "@/contexts/AppContext";
 import toast from "react-hot-toast";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { SocketContext } from "@/contexts/SocketContext";
 import { BiSolidMessageRounded } from "react-icons/bi";
-import { MessagePayload, MessageType, Notification, UserDiscussion } from "@/utils/Types";
+import { MessagePayload, Notification, UserDiscussion } from "@/utils/Types";
 
 
 
@@ -23,7 +23,7 @@ import { MessagePayload, MessageType, Notification, UserDiscussion } from "@/uti
 
 export default function DesktopNav(){
     const { userProfile,setUserProfile,showNotificationsPanel,setShowNotificationsPanel } = useContext(AppContext)
-    const {notifications,setNotifications,notificationsCount,setNotificationsCount,discussions,setDiscussions,unreadMessagesCounter,setUnreadMessagesCounter,messages,chatWsRef,notificationsWsRef,setMessages,setSelectedUser,messagesDivRef} = useContext(SocketContext)
+    const {notifications,setNotifications,notificationsCount,setNotificationsCount,discussions,setDiscussions,unreadMessagesCounter,setUnreadMessagesCounter,messages,chatWsRef,notificationsWsRef,setSelectedUser} = useContext(SocketContext)
     const [accessToken,setAccessToken] = useState<string | null>(null)
     const router = useRouter()
 
@@ -102,48 +102,48 @@ export default function DesktopNav(){
 
 
 
-    const handleUnreadMessages = (message:MessagePayload)=>{
-        setSelectedUser((prev:UserDiscussion)=>{
-            if(prev == undefined){
-                setDiscussions((prev:UserDiscussion[])=>{
-                    const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
-                       if(discussion.id == message.sender.user.id){
-                           console.log('discussion exists and user undefined!!')
-                           const updatedDiscussion:UserDiscussion = {
-                               ...discussion,
-                               unread_count:discussion.unread_count + 1,
-                           }
-                           return updatedDiscussion
-                       }
-                       return discussion
-                   })
-                   return updatedDiscussions
-               })
-            }
-            if( prev && prev.id != message.sender.user.id){
-                setDiscussions((prev:UserDiscussion[])=>{
-                    const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
-                       if(discussion.id == message.sender.user.id){
-                           console.log('discussion exists and user exists!!')
-                           const updatedDiscussion:UserDiscussion = {
-                               ...discussion,
-                               unread_count:discussion.unread_count + 1,
-                           }
-                           return updatedDiscussion
-                       }
-                       return discussion
-                   })
-                   return updatedDiscussions
-               })
-            } 
-            if(prev && prev.id == message.sender.user.id){
-                handleSeenMessages(prev)
-            }
-            return prev
-        })
+    // const handleUnreadMessages = (message:MessagePayload)=>{
+    //     setSelectedUser((prev:UserDiscussion)=>{
+    //         if(prev == undefined){
+    //             setDiscussions((prev:UserDiscussion[])=>{
+    //                 const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
+    //                    if(discussion.id == message.sender.user.id){
+    //                        console.log('discussion exists and user undefined!!')
+    //                        const updatedDiscussion:UserDiscussion = {
+    //                            ...discussion,
+    //                            unread_count:discussion.unread_count + 1,
+    //                        }
+    //                        return updatedDiscussion
+    //                    }
+    //                    return discussion
+    //                })
+    //                return updatedDiscussions
+    //            })
+    //         }
+    //         if( prev && prev.id != message.sender.user.id){
+    //             setDiscussions((prev:UserDiscussion[])=>{
+    //                 const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
+    //                    if(discussion.id == message.sender.user.id){
+    //                        console.log('discussion exists and user exists!!')
+    //                        const updatedDiscussion:UserDiscussion = {
+    //                            ...discussion,
+    //                            unread_count:discussion.unread_count + 1,
+    //                        }
+    //                        return updatedDiscussion
+    //                    }
+    //                    return discussion
+    //                })
+    //                return updatedDiscussions
+    //            })
+    //         } 
+    //         if(prev && prev.id == message.sender.user.id){
+    //             handleSeenMessages(prev)
+    //         }
+    //         return prev
+    //     })
  
 
-    }
+    // }
 
     // useEffect(()=>{
     //     if( notificationsWsRef.current &&   notificationsWsRef.current?.readyState === WebSocket.OPEN){

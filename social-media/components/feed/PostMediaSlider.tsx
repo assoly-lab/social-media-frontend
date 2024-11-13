@@ -16,11 +16,11 @@ import Emojis from "../posts/Emojis";
 
 
 
-export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{post:PostType,setShowMediaSlider:React.Dispatch<React.SetStateAction<Boolean>>,mediaIndex:number}){
+export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{post:PostType,setShowMediaSlider:React.Dispatch<React.SetStateAction<boolean>>,mediaIndex:number}){
     const [shownMedia,setShownMedia] = useState<string>(post.media[mediaIndex].file)
     const [sliderMediaIndex,setSliderMediaIndex] = useState<number>(mediaIndex)
     const [commentsCount,setCommentsCount] = useState<number>(post.comments_count as number)
-    const [isLiked,setIsLiked] = useState<Boolean>(post.is_liked as Boolean)
+    const [isLiked,setIsLiked] = useState<boolean>(post.is_liked as boolean)
     const [likesCount,setLikesCount] = useState<number>(post.likes as number)
     const [accessToken,setAccessToken] = useState<string>('')
     const [comments,setComments] = useState<CommentType[]>(post.comments)
@@ -54,7 +54,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
                             const error = await response.json()
                             toast.error(JSON.stringify(error))
                         }
-                        const data = await response.json()
+                        // const data = await response.json()
                         setIsLiked(false)
                         setLikesCount((prev:number)=>prev - 1)
                     }catch(e){
@@ -74,7 +74,7 @@ export default function PostMediaSlider({post,setShowMediaSlider,mediaIndex}:{po
                             const error = await response.json()
                             toast.error(JSON.stringify(error))
                         }
-                        const data = await response.json()
+                        // const data = await response.json()
                         setIsLiked(true)
                         setLikesCount((prev:number)=>prev + 1)
                     }catch(e){

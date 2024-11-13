@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 
 
-export default function MobileUser({user,setIsList}:{user:UserDiscussion,setIsList:React.Dispatch<React.SetStateAction<Boolean>>}){
+export default function MobileUser({user,setIsList}:{user:UserDiscussion,setIsList:React.Dispatch<React.SetStateAction<boolean>>}){
 
     const {selectedUser,setSelectedUser,discussions,setDiscussions } = useContext(SocketContext)
     const handleSeenMessages = async (user:UserDiscussion)=>{

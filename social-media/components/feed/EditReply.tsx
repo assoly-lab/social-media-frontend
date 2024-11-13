@@ -6,7 +6,7 @@ import Emojis from "../posts/Emojis"
 
 
 
-export default function EditReply({reply,setReplies,setIsEditReply,postId}:{reply:CommentType,setReplies:React.Dispatch<React.SetStateAction<CommentType[]>>,setIsEditReply:React.Dispatch<React.SetStateAction<Boolean>>,postId:number}){
+export default function EditReply({reply,setReplies,setIsEditReply,postId}:{reply:CommentType,setReplies:React.Dispatch<React.SetStateAction<CommentType[]>>,setIsEditReply:React.Dispatch<React.SetStateAction<boolean>>,postId:number}){
 
     const ref = useRef<HTMLTextAreaElement>(null)
     const [accessToken,setAccessToken] =  useState<string>('') 
@@ -41,8 +41,7 @@ export default function EditReply({reply,setReplies,setIsEditReply,postId}:{repl
                             toast.error(JSON.stringify(error))
                         }
                         const data = await response.json()
-                        console.log('data: ',data)
-                        setReplies((prev:CommentType[] | [])=>[...data])
+                        setReplies([...data])
                         setIsEditReply(false)
                     }catch(e){
                         const error = e as Error

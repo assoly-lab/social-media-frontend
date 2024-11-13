@@ -14,7 +14,7 @@ import Emojis from "../posts/Emojis"
 
 
 
-export default function EditPost({setIsEditPost,post}:{setIsEditPost:React.Dispatch<React.SetStateAction<Boolean>>,post:PostType}){
+export default function EditPost({setIsEditPost,post}:{setIsEditPost:React.Dispatch<React.SetStateAction<boolean>>,post:PostType}){
     const { userProfile,setPostsList} = useContext(AppContext)
     const router = useRouter()
     const ref = useRef(null)
@@ -75,7 +75,7 @@ export default function EditPost({setIsEditPost,post}:{setIsEditPost:React.Dispa
                 </div>
                 <div className="attachements flex gap-6 text-md font-semibold text-[#7F265B] ">
                     <div className="flex gap-1" >
-                        <input type="checkbox" name="is_public" id="is_public" defaultChecked={post.is_public as boolean} disabled={accessToken ? false : true} />
+                        <input type="checkbox" name="is_public" id="is_public" defaultChecked={post.is_public} disabled={accessToken ? false : true} />
                         <label htmlFor="is_public" onClick={()=>!accessToken && toast.error('You must login to create a post!')} >Share publicly</label>
                     </div>
                     <label htmlFor="image-input" className="flex items-center gap-1 cursor-pointer" onClick={()=>!accessToken && toast.error('You must login to create a post!')} ><MdInsertPhoto className="w-4 h-4" /> Photo</label>

@@ -6,7 +6,7 @@ import {motion} from "framer-motion"
 import { MdDelete, MdModeEdit } from "react-icons/md";
 
 
-export default function ReplySettings({reply,setShowSettings,setIsEditReply,postId,setReplies}:{reply:CommentType,setShowSettings:React.Dispatch<React.SetStateAction<Boolean>>,setIsEditReply:React.Dispatch<React.SetStateAction<Boolean>>,postId:number,setReplies:React.Dispatch<React.SetStateAction<CommentType[]>>}){
+export default function ReplySettings({reply,setShowSettings,setIsEditReply,postId,setReplies}:{reply:CommentType,setShowSettings:React.Dispatch<React.SetStateAction<boolean>>,setIsEditReply:React.Dispatch<React.SetStateAction<boolean>>,postId:number,setReplies:React.Dispatch<React.SetStateAction<CommentType[]>>}){
     
     const handleDeleteReply = async()=>{
         try{

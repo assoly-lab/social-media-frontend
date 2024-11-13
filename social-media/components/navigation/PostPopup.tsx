@@ -17,15 +17,15 @@ import PostSettings from "../feed/PostSettings";
 
 
 
-export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShowPostPopup:React.Dispatch<React.SetStateAction<Boolean>>}){
+export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShowPostPopup:React.Dispatch<React.SetStateAction<boolean>>}){
     const {userProfile} = useContext(AppContext)
-    const [showSettings,setShowSettings] = useState<Boolean>(false)
-    const [isEditPost,setIsEditPost] = useState<Boolean>(false)
+    const [showSettings,setShowSettings] = useState<boolean>(false)
+    const [isEditPost,setIsEditPost] = useState<boolean>(false)
     const [mediaIndex,setMediaIndex] = useState<number>(0)
     const [shownMedia,setShownMedia] = useState<string>(post.media.length > 0 ? post.media[mediaIndex].file : '')
     const [likesCount,setLikesCount] = useState<number>(post.likes as number)
     const [accessToken,setAccessToken] = useState<string>('')
-    const [isLiked,setIsLiked] = useState<Boolean>(post.is_liked as Boolean)
+    const [isLiked,setIsLiked] = useState<boolean>(post.is_liked as boolean)
     const [comments,setComments] = useState<CommentType[]>(post.comments)
     const [commentsCount,setCommentsCount] = useState<number>(post.comments_count as number)
     const timeAgo = formatDistanceToNowStrict(new Date(post.created_at == post.updated_at ? post.created_at! : post.updated_at!),{
@@ -72,7 +72,6 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
                         const error = await response.json()
                         toast.error(JSON.stringify(error))
                     }
-                    const data = await response.json()
                     setIsLiked(false)
                     setLikesCount((prev:number)=>prev - 1)
                 }catch(e){
@@ -92,7 +91,6 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
                         const error = await response.json()
                         toast.error(JSON.stringify(error))
                     }
-                    const data = await response.json()
                     setIsLiked(true)
                     setLikesCount((prev:number)=>prev + 1)
                 }catch(e){
@@ -113,7 +111,7 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
             }
            
         {post && 
-            <div className="w-[90%] pt-4 pl-4 mx-auto flex flex-col gap-2" onClick={()=>setShowSettings((prev:Boolean)=> prev==true && false)} >
+            <div className="w-[90%] pt-4 pl-4 mx-auto flex flex-col gap-2" onClick={()=>setShowSettings((prev:boolean)=> prev==true && false)} >
             <div className="flex items-center justify-between gap-4">
                 <div className="flex flex-col ">
                 <div className="relative flex items-center justify-center gap-4" >
@@ -126,7 +124,7 @@ export default function PostPopup({post,setShowPostPopup}:{post:PostType,setShow
                 <div>
                     <span className="relative hover:bg-slate-100 rounded-full cursor-pointer" onClick={(e)=>{
                         e.stopPropagation()
-                        setShowSettings((prev:Boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] mb-4" /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] mb-4" />}
+                        setShowSettings((prev:boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] mb-4" /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] mb-4" />}
                     <AnimatePresence >
                         {showSettings &&
                         <PostSettings post={post} setShowSettings={setShowSettings} setIsEditPost={setIsEditPost} />

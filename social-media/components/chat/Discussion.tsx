@@ -17,9 +17,9 @@ export default function Discussion({user}:{user:any}){
     const messagesDivRef = useRef<HTMLDivElement>(null)
     const topSentinelRef = useRef<HTMLDivElement>(null)
     const [lastMessageHeight,setLastMessageHeight] = useState<number | undefined>(0)
-    const [hasMounted,setHasMounted] = useState<Boolean>(false)
+    const [hasMounted,setHasMounted] = useState<boolean>(false)
     const [oldMessages,setOldMessages] = useState<string|null>(null)
-    const [isLoading,setIsLoading] = useState<Boolean>(false)
+    const [isLoading,setIsLoading] = useState<boolean>(false)
     const observer = new IntersectionObserver((entries)=>{
         const [entry] = entries
         if(entry.isIntersecting){
@@ -132,8 +132,7 @@ export default function Discussion({user}:{user:any}){
                 
             })
 
-            messageInputRef.current && 
-            (messageInputRef.current.value = '')
+            if(messageInputRef.current) (messageInputRef.current.value = '')
         }
         }
 

@@ -11,8 +11,8 @@ import ReplySettings from "./ReplySettings"
 
 export default function Reply({reply,setReplies,postId}:{reply:CommentType,setReplies:React.Dispatch<React.SetStateAction<CommentType[]>>,postId:number}){
     const {userProfile} = useContext(AppContext)
-    const [showSettings,setShowSettings] = useState<Boolean>(false)
-    const [isEditReply,setIsEditReply] = useState<Boolean>(false)
+    const [showSettings,setShowSettings] = useState<boolean>(false)
+    const [isEditReply,setIsEditReply] = useState<boolean>(false)
     return (
         <>{
             isEditReply && 
@@ -28,7 +28,7 @@ export default function Reply({reply,setReplies,postId}:{reply:CommentType,setRe
                     <div className="mt-2">
                         <span className="relative hover:bg-slate-100 rounded-full cursor-pointer" onClick={(e)=>{
                             e.stopPropagation()
-                            setShowSettings((prev:Boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] " /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] " />}
+                            setShowSettings((prev:boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] " /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] " />}
                         <AnimatePresence >
                             {showSettings &&
                             <ReplySettings reply={reply} setShowSettings={setShowSettings} setIsEditReply={setIsEditReply} postId={postId} setReplies={setReplies}  />

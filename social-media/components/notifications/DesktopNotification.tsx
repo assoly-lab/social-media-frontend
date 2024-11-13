@@ -1,7 +1,6 @@
 import { Notification, PostType } from "@/utils/Types";
 import { formatDistanceToNowStrict } from "date-fns";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PostPopup from "../navigation/PostPopup";
 import Link from "next/link"
@@ -11,9 +10,8 @@ import Link from "next/link"
 
 
 export default function DesktopNotification({notification}:{notification:Notification}){
-    const [showPostPopup,setShowPostPopup] = useState<Boolean>(false)
+    const [showPostPopup,setShowPostPopup] = useState<boolean>(false)
     const bgClass = notification.is_read ? 'bg-gray-100' : 'bg-white'
-    const router = useRouter()
     const timeAgo = formatDistanceToNowStrict(new Date(notification?.timestamp),{
         addSuffix:true})
 

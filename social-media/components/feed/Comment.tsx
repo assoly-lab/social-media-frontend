@@ -14,13 +14,13 @@ import EditComment from "./EditComment";
 export default function Comment({comment,postId,setComments,setCommentsCount}:{comment:CommentType,postId:number,setComments:React.Dispatch<React.SetStateAction<CommentType[]>>,setCommentsCount:React.Dispatch<React.SetStateAction<number>>}){
     const [accessToken,setAccessToken] = useState<string>('')
     const [commentLikes,setCommentLikes] = useState<number>(comment.likes)
-    const [isCommentLiked,setIsCommentLiked] = useState<Boolean>(comment.is_liked)
+    const [isCommentLiked,setIsCommentLiked] = useState<boolean>(comment.is_liked)
     const [replies,setReplies] = useState<CommentType[] | []>(comment.replies)
-    const [isEditComment,setIsEditComment] = useState<Boolean>(false)
-    const [showSettings,setShowSettings] = useState<Boolean>(false)
+    const [isEditComment,setIsEditComment] = useState<boolean>(false)
+    const [showSettings,setShowSettings] = useState<boolean>(false)
     const {userProfile} = useContext(AppContext)
     const ref = useRef<HTMLTextAreaElement>(null)
-    const [isReply,setIsReply] = useState<Boolean>(false)
+    const [isReply,setIsReply] = useState<boolean>(false)
     useEffect(()=>{
         const access = localStorage.getItem('access')
         if(access){
@@ -45,7 +45,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
                         const error = await response.json()
                         toast.error(JSON.stringify(error))
                     }
-                    const data = await response.json()
+                    // const data = await response.json()
                     setCommentLikes((prev:number)=>prev - 1)
                     setIsCommentLiked(false)
 
@@ -68,7 +68,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
                         const error = await response.json()
                         toast.error(JSON.stringify(error))
                     }
-                    const data = await response.json()
+                    // const data = await response.json()
                     setCommentLikes((prev:number)=>prev + 1)
                     setIsCommentLiked(true)
 
@@ -101,7 +101,7 @@ export default function Comment({comment,postId,setComments,setCommentsCount}:{c
                     <div className="mt-2">
                         <span className="relative hover:bg-slate-100 rounded-full cursor-pointer" onClick={(e)=>{
                             e.stopPropagation()
-                            setShowSettings((prev:Boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] " /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] " />}
+                            setShowSettings((prev:boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] " /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] " />}
                         <AnimatePresence >
                             {showSettings &&
                             <CommentSettings comment={comment} setShowSettings={setShowSettings} setIsEditComment={setIsEditComment} postId={postId} setComments={setComments} setCommentsCount={setCommentsCount} />

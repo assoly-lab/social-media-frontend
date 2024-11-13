@@ -11,10 +11,8 @@ import PostPopup from "../navigation/PostPopup";
 
 export default function MobileNotification({notification}:{notification:Notification}){
 
-    const [showPostPopup,setShowPostPopup] = useState<Boolean>(false)
-    const { setShowMobileNotificationsPanel } = useContext(AppContext)
+    const [showPostPopup,setShowPostPopup] = useState<boolean>(false)
     const bgClass = notification.is_read ? 'bg-gray-100' : 'bg-white'
-    const router = useRouter()
     const timeAgo = formatDistanceToNowStrict(new Date(notification.timestamp),{
         addSuffix:true,})
     return (
@@ -27,7 +25,6 @@ export default function MobileNotification({notification}:{notification:Notifica
                 e.stopPropagation()
                 if(notification.post != null){
                     setShowPostPopup(true)
-                    // setShowMobileNotificationsPanel(false)
                 }
                 }
                 }

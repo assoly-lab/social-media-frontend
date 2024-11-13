@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 
 
 
-export default function FollowersList({followers,setShowFollowers}:{followers:Follower[],setShowFollowers:React.Dispatch<React.SetStateAction<Boolean>>}){
+export default function FollowersList({followers,setShowFollowers}:{followers:Follower[],setShowFollowers:React.Dispatch<React.SetStateAction<boolean>>}){
     const { userProfile } = useContext(AppContext)
     const RenderCta = ({follower}:{follower:Follower})=>{
         const accessToken = localStorage.getItem('access')

@@ -133,8 +133,8 @@ export default function CreatePostForm(){
                         
                             { postImages.map((postImage:File,index:number)=>{
                                     return (
-                                        <div className="relative" >
-                                            <Image key={index} src={URL.createObjectURL(postImage)} width={40} height={40}  alt="uploaded post image" />
+                                        <div key={index} className="relative" >
+                                            <Image  src={URL.createObjectURL(postImage)} width={40} height={40}  alt="uploaded post image" />
                                             <IoCloseOutline className="absolute top-0 right-0 z-50  w-5 h-5 font-bold text-red-500 bg-slate-100 rounded-full cursor-pointer" onClick={()=>{
                                                 const updatedPostImages = postImages.filter((_,i)=> i !== index)
                                                 setPostImages(updatedPostImages)

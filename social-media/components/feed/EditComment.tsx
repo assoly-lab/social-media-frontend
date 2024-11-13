@@ -7,7 +7,7 @@ import Emojis from "../posts/Emojis"
 
 
 
-export default function EditComment({comment,postId,setComments,setIsEditComment}:{comment:CommentType,postId:number,setComments:React.Dispatch<React.SetStateAction<CommentType[]>>,setIsEditComment:React.Dispatch<React.SetStateAction<Boolean>>}){
+export default function EditComment({comment,postId,setComments,setIsEditComment}:{comment:CommentType,postId:number,setComments:React.Dispatch<React.SetStateAction<CommentType[]>>,setIsEditComment:React.Dispatch<React.SetStateAction<boolean>>}){
     const [accessToken,setAccessToken] = useState<string>('')
     const ref = useRef<HTMLTextAreaElement>(null)
 
@@ -41,7 +41,7 @@ export default function EditComment({comment,postId,setComments,setIsEditComment
                         }
                         const data = await response.json()
                         console.log('data: ',data)
-                        setComments((prev:CommentType[] | [])=>[...data])
+                        setComments([...data])
                         setIsEditComment(false)
                     }catch(e){
                         const error = e as Error

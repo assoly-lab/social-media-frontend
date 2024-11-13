@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 
 
-export default function FollowingList({following,setShowFollowing}:{following:Following[],setShowFollowing:React.Dispatch<React.SetStateAction<Boolean>>}){
+export default function FollowingList({following,setShowFollowing}:{following:Following[],setShowFollowing:React.Dispatch<React.SetStateAction<boolean>>}){
     const { userProfile } = useContext(AppContext)
 
     const renderCta = (follower:Following)=>{

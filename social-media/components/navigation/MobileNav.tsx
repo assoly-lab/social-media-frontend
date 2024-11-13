@@ -10,20 +10,20 @@ import { FiLogOut } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
 import { AppContext } from "@/contexts/AppContext";
 import toast from "react-hot-toast";
-import { fetchWithAuth, isTokenExpired } from "@/utils/Helpers";
+import { fetchWithAuth } from "@/utils/Helpers";
 import MobileNotificationsPanel from "./MobileNotificationsPanel";
 import { SocketContext } from "@/contexts/SocketContext";
 import { BiSolidMessageRounded } from "react-icons/bi";
 import { useRouter } from "next/navigation";
-import { MessagePayload, MessageType, UserDiscussion,Notification } from "@/utils/Types";
+import { MessagePayload, UserDiscussion,Notification } from "@/utils/Types";
 
 
 
 
 export default function MobileNav(){
-    const [isOpen,setIsOpen] = useState<Boolean>(false)
+    const [isOpen,setIsOpen] = useState<boolean>(false)
     const { userProfile,setUserProfile,showMobileNotificationsPanel,setShowMobileNotificationsPanel } = useContext(AppContext)
-    const {notifications,setNotifications,notificationsCount,setNotificationsCount,unreadMessagesCounter,setUnreadMessagesCounter,chatWsRef,notificationsWsRef,setMessages,setDiscussions,setSelectedUser,messagesDivRef} = useContext(SocketContext)
+    const {notifications,setNotifications,notificationsCount,setNotificationsCount,unreadMessagesCounter,setUnreadMessagesCounter,chatWsRef,notificationsWsRef,setDiscussions,setSelectedUser} = useContext(SocketContext)
     const [accessToken,setAccessToken] = useState<string>('')
     const router = useRouter()
 
@@ -70,48 +70,48 @@ export default function MobileNav(){
 
 
 
-    const handleUnreadMessages = (message:MessagePayload)=>{
-        setSelectedUser((prev:UserDiscussion)=>{
-            if(prev == undefined){
-                setDiscussions((prev:UserDiscussion[])=>{
-                    const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
-                       if(discussion.id == message.sender.user.id){
-                           console.log('discussion exists and user undefined!!')
-                           const updatedDiscussion:UserDiscussion = {
-                               ...discussion,
-                               unread_count:discussion.unread_count + 1,
-                           }
-                           return updatedDiscussion
-                       }
-                       return discussion
-                   })
-                   return updatedDiscussions
-               })
-            }
-            if( prev && prev.id != message.sender.user.id){
-                setDiscussions((prev:UserDiscussion[])=>{
-                    const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
-                       if(discussion.id == message.sender.user.id){
-                           console.log('discussion exists and user undefined!!')
-                           const updatedDiscussion:UserDiscussion = {
-                               ...discussion,
-                               unread_count:discussion.unread_count + 1,
-                           }
-                           return updatedDiscussion
-                       }
-                       return discussion
-                   })
-                   return updatedDiscussions
-               })
-            } 
-            if(prev && prev.id == message.sender.user.id){
-                handleSeenMessages(prev)
-            }
-            return prev
-        })
+    // const handleUnreadMessages = (message:MessagePayload)=>{
+    //     setSelectedUser((prev:UserDiscussion)=>{
+    //         if(prev == undefined){
+    //             setDiscussions((prev:UserDiscussion[])=>{
+    //                 const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
+    //                    if(discussion.id == message.sender.user.id){
+    //                        console.log('discussion exists and user undefined!!')
+    //                        const updatedDiscussion:UserDiscussion = {
+    //                            ...discussion,
+    //                            unread_count:discussion.unread_count + 1,
+    //                        }
+    //                        return updatedDiscussion
+    //                    }
+    //                    return discussion
+    //                })
+    //                return updatedDiscussions
+    //            })
+    //         }
+    //         if( prev && prev.id != message.sender.user.id){
+    //             setDiscussions((prev:UserDiscussion[])=>{
+    //                 const updatedDiscussions = prev.map((discussion:UserDiscussion)=>{
+    //                    if(discussion.id == message.sender.user.id){
+    //                        console.log('discussion exists and user undefined!!')
+    //                        const updatedDiscussion:UserDiscussion = {
+    //                            ...discussion,
+    //                            unread_count:discussion.unread_count + 1,
+    //                        }
+    //                        return updatedDiscussion
+    //                    }
+    //                    return discussion
+    //                })
+    //                return updatedDiscussions
+    //            })
+    //         } 
+    //         if(prev && prev.id == message.sender.user.id){
+    //             handleSeenMessages(prev)
+    //         }
+    //         return prev
+    //     })
  
 
-    }
+    // }
 
     // useEffect(()=>{
     //     if( notificationsWsRef.current &&   notificationsWsRef.current?.readyState === WebSocket.OPEN){
@@ -295,7 +295,7 @@ export default function MobileNav(){
             <span className="relative text-xs bg-[#7F265B] text-white rounded-md p-1 cursor-pointer" onClick={(e)=>{
                 e.stopPropagation()
                 handleSeenNotifications()
-                setShowMobileNotificationsPanel((prev:Boolean)=>!prev)
+                setShowMobileNotificationsPanel((prev:boolean)=>!prev)
                 }}>
                 {notificationsCount > 0 && 
                 <span className="absolute -top-3 -right-2 bg-red-500 p-1 rounded-full" >{notificationsCount}</span>}

@@ -9,7 +9,7 @@ import { AppContext } from "@/contexts/AppContext";
 
 
 
-export default function PostSettings({post,setShowSettings,setIsEditPost}:{post:PostType,setShowSettings:React.Dispatch<React.SetStateAction<Boolean>>,setIsEditPost:React.Dispatch<React.SetStateAction<Boolean>>}){
+export default function PostSettings({post,setShowSettings,setIsEditPost}:{post:PostType,setShowSettings:React.Dispatch<React.SetStateAction<boolean>>,setIsEditPost:React.Dispatch<React.SetStateAction<boolean>>}){
 
 
 

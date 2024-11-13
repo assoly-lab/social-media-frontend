@@ -20,16 +20,16 @@ import Link from "next/link";
 
 export default function Post({post}:{post:PostType}){
 
-    const [showSettings,setShowSettings] = useState<Boolean>(false)
-    const [showMediaSlider,setShowMediaSlider] = useState<Boolean>(false)
+    const [showSettings,setShowSettings] = useState<boolean>(false)
+    const [showMediaSlider,setShowMediaSlider] = useState<boolean>(false)
     const [accessToken,setAccessToken] = useState<string>('')
     const [mediaIndex,setMediaIndex] = useState<number>(0)
     const [likesCount,setLikesCount] = useState<number>(post.likes as number)
     const [comments,setComments] = useState<CommentType[]>(post.comments)
     const [commentsCount,setCommentsCount] = useState<number>(post.comments_count as number)
-    const [isLiked,setIsLiked] = useState<Boolean>(post.is_liked as Boolean)
+    const [isLiked,setIsLiked] = useState<boolean>(post.is_liked as boolean)
     const ref = useRef<HTMLTextAreaElement>(null)
-    const [isEditPost,setIsEditPost] = useState<Boolean>(false)
+    const [isEditPost,setIsEditPost] = useState<boolean>(false)
     const {userProfile} = useContext(AppContext)
 
     const timeAgo = formatDistanceToNowStrict(new Date(post.created_at == post.updated_at ? post.created_at! : post.updated_at!),{
@@ -51,7 +51,7 @@ export default function Post({post}:{post:PostType}){
                         const error = await response.json()
                         toast.error(JSON.stringify(error))
                     }
-                    const data = await response.json()
+                    // const data = await response.json()
                     setIsLiked(false)
                     setLikesCount((prev:number)=>prev - 1)
                 }catch(e){
@@ -71,7 +71,7 @@ export default function Post({post}:{post:PostType}){
                         const error = await response.json()
                         toast.error(JSON.stringify(error))
                     }
-                    const data = await response.json()
+                    // const data = await response.json()
                     setIsLiked(true)
                     setLikesCount((prev:number)=>prev + 1)
                 }catch(e){
@@ -107,7 +107,7 @@ export default function Post({post}:{post:PostType}){
 
            
         {post && 
-            <div className="w-[90%] pt-4 flex flex-col gap-2" onClick={()=>setShowSettings((prev:Boolean)=> prev==true && false)} >
+            <div className="w-[90%] pt-4 flex flex-col gap-2" onClick={()=>setShowSettings((prev:boolean)=> prev==true && false)} >
             <div className="flex items-center justify-between gap-4">
                 <div className="flex flex-col ">
                 <div className="relative flex items-center justify-center gap-4" >
@@ -120,7 +120,7 @@ export default function Post({post}:{post:PostType}){
                 <div>
                     <span className="relative hover:bg-slate-100 rounded-full cursor-pointer" onClick={(e)=>{
                         e.stopPropagation()
-                        setShowSettings((prev:Boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] " /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] " />}
+                        setShowSettings((prev:boolean)=>!prev)}} > {showSettings ? <MdOutlineKeyboardArrowUp className="w-6 h-6 text-[#7F265B] " /> : <MdOutlineKeyboardArrowDown className="w-6 h-6 text-[#7F265B] " />}
                     <AnimatePresence >
                         {showSettings &&
                         <PostSettings post={post} setShowSettings={setShowSettings} setIsEditPost={setIsEditPost} />

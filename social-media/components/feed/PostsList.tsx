@@ -19,7 +19,7 @@ import {HashLoader} from "react-spinners"
 
 export default function PostsList(){
     const { postsList,setPostsList } = useContext(AppContext)
-    const [loadingPosts, setLoadingPosts] = useState<Boolean>(true)
+    const [loadingPosts, setLoadingPosts] = useState<boolean>(true)
 
 
     useEffect(()=>{
