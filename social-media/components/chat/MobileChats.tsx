@@ -30,14 +30,7 @@ export default function MobileChats(){
     const [hasMounted,setHasMounted] = useState<boolean>(false)
     const [isLoading,setIsLoading] = useState<boolean>(false)
     const [isScrollButton,setIsScrollButton] = useState<boolean>(true)
-    const observer = new IntersectionObserver((entries)=>{
-        const [entry] = entries
-        if(entry.isIntersecting){
-            handleLoadOldMessages()
-        }
-    },
-    {root:messagesDivRef?.current}
-    )
+    const observerRef = useRef<IntersectionObserver | null>(null)
 
 
 
@@ -75,7 +68,7 @@ export default function MobileChats(){
                    
                 }else{
                     setOldMessages(null)
-                    observer.disconnect()
+                    observerRef.current?.disconnect()
                 }      
                 
 
@@ -85,6 +78,20 @@ export default function MobileChats(){
             }
         }
     }
+
+
+    useEffect(()=>{
+        observerRef.current = new IntersectionObserver((entries)=>{
+            const [entry] = entries
+            if(entry.isIntersecting){
+                handleLoadOldMessages()
+            }
+        },
+        {root:messagesDivRef?.current}
+        )
+
+    },[])
+
 
 
     const sendMessage = async(formData:FormData)=>{
@@ -165,12 +172,12 @@ export default function MobileChats(){
         }
 
         if(topSentinelRef.current){
-            observer.observe(topSentinelRef.current)
+            observerRef.current?.observe(topSentinelRef.current)
         }
 
         return ()=>{
             if(topSentinelRef.current){
-                observer.unobserve(topSentinelRef.current)
+                observerRef.current?.unobserve(topSentinelRef.current)
             }
         }
         

@@ -20,14 +20,9 @@ export default function Discussion({user}:{user:any}){
     const [hasMounted,setHasMounted] = useState<boolean>(false)
     const [oldMessages,setOldMessages] = useState<string|null>(null)
     const [isLoading,setIsLoading] = useState<boolean>(false)
-    const observer = new IntersectionObserver((entries)=>{
-        const [entry] = entries
-        if(entry.isIntersecting){
-            handleLoadOldMessages()
-        }
-    },
-    {root:messagesDivRef?.current}
-    )
+    const observerRef = useRef<IntersectionObserver | null>(null)
+
+
 
     const handleLoadOldMessages = async()=>{
         if(oldMessages){
@@ -52,7 +47,7 @@ export default function Discussion({user}:{user:any}){
                    
                 }else{
                     setOldMessages(null)
-                    observer.disconnect()
+                    observerRef.current?.disconnect()
                 }      
                 
 
@@ -63,6 +58,16 @@ export default function Discussion({user}:{user:any}){
         }
     }
 
+    useEffect(()=>{
+        observerRef.current = new IntersectionObserver((entries)=>{
+            const [entry] = entries
+            if(entry.isIntersecting){
+                handleLoadOldMessages()
+            }
+        },
+        {root:messagesDivRef?.current}
+        )
+    },[])
 
     useEffect(()=>{
         const getDiscussion = async()=>{
@@ -154,13 +159,14 @@ export default function Discussion({user}:{user:any}){
         }
 
         if(topSentinelRef.current){
-            observer.observe(topSentinelRef.current)
+            observerRef.current?.observe(topSentinelRef.current)
         }
 
         return ()=>{
             if(topSentinelRef.current){
-                observer.unobserve(topSentinelRef.current)
+                observerRef.current?.unobserve(topSentinelRef.current)
             }
+            observerRef.current?.disconnect()
         }
         
     },[hasMounted,oldMessages])
