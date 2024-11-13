@@ -36,6 +36,8 @@ export default function Post({post}:{post:PostType}){
         addSuffix:true,
     })
 
+    console.log(post.author.userprofile.avatar.startsWith('http') ? post.author.userprofile.avatar : `https://tornado008.pythonanywhere.com${post.author.userprofile.avatar}`)
+
     const handlePostLike = async(post:PostType)=>{
         if(accessToken){
             if(isLiked){
