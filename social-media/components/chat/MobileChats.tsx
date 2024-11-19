@@ -68,7 +68,7 @@ export default function MobileChats(){
                    
                 }else{
                     setOldMessages(null)
-                    observerRef.current?.disconnect()
+                    if(observerRef.current) observerRef.current.disconnect()
                 }      
                 
 
@@ -81,14 +81,7 @@ export default function MobileChats(){
 
 
     useEffect(()=>{
-        observerRef.current = new IntersectionObserver((entries)=>{
-            const [entry] = entries
-            if(entry.isIntersecting){
-                handleLoadOldMessages()
-            }
-        },
-        {root:messagesDivRef?.current}
-        )
+
 
     },[])
 
@@ -168,18 +161,26 @@ export default function MobileChats(){
 
     useEffect(()=>{
         if(!hasMounted){
+            observerRef.current = new IntersectionObserver((entries)=>{
+                const [entry] = entries
+                if(entry.isIntersecting){
+                    handleLoadOldMessages()
+                }
+            },
+            {root:messagesDivRef?.current}
+            )
             return
         }
 
-        if(topSentinelRef.current){
-            observerRef.current?.observe(topSentinelRef.current)
+        if(topSentinelRef.current && observerRef.current){
+            observerRef.current.observe(topSentinelRef.current)
         }
 
         return ()=>{
-            if(topSentinelRef.current){
-                observerRef.current?.unobserve(topSentinelRef.current)
+            if(topSentinelRef.current && observerRef.current){
+                observerRef.current.unobserve(topSentinelRef.current)
             }
-            observerRef.current?.disconnect()
+            if(observerRef.current) observerRef.current.disconnect()
         }
         
     },[hasMounted,oldMessages])

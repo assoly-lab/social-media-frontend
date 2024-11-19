@@ -185,7 +185,7 @@ export default function Post({post}:{post:PostType}){
         </div>}
 
         <div className="w-full flex flex-col items-center justify-center gap-4">
-            <div className=" ml-2 md:ml-0 w-[90%] flex gap-4" >
+            <div className=" ml-2 md:ml-0 md:w-[90%] flex gap-4" >
                 <div className="flex cursor-pointer gap-1 items-center bg-gray-50 p-2 group" onClick={()=>handlePostLike(post)}>
                     <LuHeart fill={isLiked ? '#7F265B' : 'transparent'} className="cursor-pointer w-5 h-5  text-[#7F265B] group-hover:fill-[#7F265B] mr-2" />
                     <p className="text-xs md:text-sm font-medium border-l border-[#7F265B] px-2 whitespace-nowrap">{likesCount} Likes</p>

@@ -320,12 +320,12 @@ export default function MobileNav(){
             }
         {isOpen &&
         <div className="fixed flex flex-col gap-4 justify-center items-center w-full h-screen overflow-hidden top-0 left-0 z-[60] bg-white" >
-            <Link href="/" onClick={()=>setIsOpen(false)} className="flex items-center justify-center gap-2 text-lg font-semibold"><FiHome className="w-5 h-5 mb-2" /> Feed</Link>
-            {accessToken && <Link href="/profile" onClick={()=>setIsOpen(false)} className="flex items-center justify-center gap-2 text-lg font-semibold" ><FaRegUser className="w-5 h-5 mb-2"  /> Profile</Link> }
+            <Link href="/" onClick={()=>setIsOpen(false)} className="flex items-center justify-center gap-2 text-lg font-semibold"><FiHome className="w-5 h-5 mb-1" /> Feed</Link>
+            {accessToken && <Link href="/profile" onClick={()=>setIsOpen(false)} className="flex items-center justify-center gap-2 text-lg font-semibold" ><FaRegUser className="w-5 h-5 mb-1"  /> Profile</Link> }
             {accessToken ? <button onClick={()=>{
                 handleLogout()
                 setIsOpen(false)
-                }} className="cursor-pointer flex gap-2"><FiLogOut/> Logout</button> : <Link href={'/login'} className="flex gap-2" onClick={()=>setIsOpen(false)} ><FiLogIn className="w-6 h-6 mt-2" />  Login/Register</Link> } 
+                }} className="cursor-pointer flex gap-2 text-lg font-semibold"><FiLogOut/> Logout</button> : <Link href={'/login'} className="flex gap-2 text-lg font-semibold" onClick={()=>setIsOpen(false)} ><FiLogIn className="w-6 h-6 mb-1" />  Login/Register</Link> } 
         </div>
         }
         </div>
